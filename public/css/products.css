@@ -1,0 +1,225 @@
+/* Products Page Styling */
+
+/* Form Styling */
+.product-form .form-label {
+    color: #4e73df;
+    margin-bottom: 0.5rem;
+}
+
+.product-form .input-group-text {
+    background-color: #4e73df;
+    color: white;
+    border-color: #4e73df;
+    width: 40px;
+    justify-content: center;
+}
+
+.product-form .form-control:focus {
+    border-color: #bac8f3;
+    box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+}
+
+.product-form .form-control::placeholder {
+    color: #d1d3e2;
+    opacity: 0.7;
+}
+
+.image-upload-container {
+    min-height: 200px;
+    background-color: #f8f9fa;
+    border: 2px dashed #d1d3e2 !important;
+    transition: all 0.3s;
+}
+
+.image-upload-container:hover {
+    border-color: #4e73df !important;
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-header {
+    background-color: #4e73df;
+    color: white;
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.page-header h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e3e6f0;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #4e73df;
+    padding: 1rem 1.25rem;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #4e73df;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(78, 115, 223, 0.05);
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* Button Styling */
+.btn-add {
+    background-color: #1cc88a;
+    border-color: #1cc88a;
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(28, 200, 138, 0.4);
+    transition: all 0.2s;
+}
+
+.btn-add:hover {
+    background-color: #17a673;
+    border-color: #169b6b;
+    transform: translateY(-2px);
+}
+
+.btn-show {
+    background-color: #f6c23e;
+    border-color: #f6c23e;
+    color: white;
+    font-weight: 600;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(246, 194, 62, 0.4);
+    transition: all 0.2s;
+}
+
+.btn-show:hover {
+    background-color: #f4b619;
+    border-color: #f4b30d;
+    transform: translateY(-2px);
+}
+
+.btn-edit {
+    background-color: #4e73df;
+    border-color: #4e73df;
+    color: white;
+    font-weight: 600;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(78, 115, 223, 0.4);
+    transition: all 0.2s;
+}
+
+.btn-edit:hover {
+    background-color: #2e59d9;
+    border-color: #2653d4;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background-color: #e74a3b;
+    border-color: #e74a3b;
+    color: white;
+    font-weight: 600;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(231, 74, 59, 0.4);
+    transition: all 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #e02d1b;
+    border-color: #d52a1a;
+    transform: translateY(-2px);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.img-thumbnail {
+    border-radius: 0.35rem;
+    border: 2px solid #e3e6f0;
+    transition: all 0.2s;
+}
+
+.img-thumbnail:hover {
+    transform: scale(1.5);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.pagination {
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.page-link {
+    color: #4e73df;
+    border: 1px solid #e3e6f0;
+}
+
+.page-item.active .page-link {
+    background-color: #4e73df;
+    border-color: #4e73df;
+}
+
+.alert-success {
+    background-color: #1cc88a;
+    border-color: #1cc88a;
+    color: white;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.footer {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    border-top: 1px solid #e3e6f0;
+    color: #858796;
+}
+
+.footer a {
+    color: #4e73df;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}

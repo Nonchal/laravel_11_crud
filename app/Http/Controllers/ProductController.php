@@ -5,6 +5,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+
 class ProductController extends Controller
 {
  /**
@@ -26,13 +27,34 @@ class ProductController extends Controller
  /**
  * Store a newly created resource in storage.
  */
- public function store(StoreProductRequest $request) : 
-RedirectResponse
+ public function store(StoreProductRequest $request) : RedirectResponse
  {
- Product::create($request->validated());
- return redirect()->route('products.index')
- ->withSuccess('New product is added successfully.');
- }
+    $request->validate([
+        'code' => 'required|unique:products',
+        'name' => 'required',
+        'quantity' => 'required|integer|min:0',
+        'price' => 'required|numeric|min:0',
+        'description' => 'nullable|string',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
+    ]);
+
+    $data = $request->all();
+
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $destinationPath = public_path('images/products');
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0777, true);
+        }
+        $image->move($destinationPath, $imageName);
+        $data['image'] = 'images/products/' . $imageName;
+    }
+
+    Product::create($data);
+    return redirect()->route('products.index')->with('success', 'Product created successfully.');
+}
+
  /**
  * Display the specified resource.
  */
@@ -50,20 +72,48 @@ RedirectResponse
  /**
  * Update the specified resource in storage.
  */
- public function update(UpdateProductRequest $request, Product
-$product) : RedirectResponse
+ public function update(UpdateProductRequest $request, Product $product) : RedirectResponse
  {
- $product->update($request->validated());
- return redirect()->back()
- ->withSuccess('Product is updated successfully.');
- }
+    $request->validate([
+        'code' => 'required|unique:products,code,' . $product->id,
+        'name' => 'required',
+        'quantity' => 'required|integer|min:0',
+        'price' => 'required|numeric|min:0',
+        'description' => 'nullable|string',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
+    ]);
+
+    $data = $request->all();
+
+    if ($request->hasFile('image')) {
+        // Delete old image if exists
+        if ($product->image && file_exists(public_path($product->image))) {
+            unlink(public_path($product->image));
+        }
+        $image = $request->file('image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $destinationPath = public_path('images/products');
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0777, true);
+        }
+        $image->move($destinationPath, $imageName);
+        $data['image'] = 'images/products/' . $imageName;
+    }
+
+    $product->update($data);
+    return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+}
  /**
  * Remove the specified resource from storage.
  */
  public function destroy(Product $product) : RedirectResponse
  {
- $product->delete();
- return redirect()->route('products.index')
- ->withSuccess('Product is deleted successfully.');
- }
+    if ($product->image && Storage::exists('public/' . $product->image)) {
+        Storage::delete('public/' . $product->image);
+    }
+
+    $product->delete();
+    return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+}
+
 }

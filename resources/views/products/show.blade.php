@@ -33,6 +33,18 @@
  <label for="description" class="col-md-4 colform-label text-md-end textstart"><strong>Description:</strong></label>
  <div class="col-md-6" style="line-height:35px;">{{ $product->description }}</div>
  </div>
+
+ <div class="row mt-3">
+ <label for="image" class="col-md-4 colform-label text-md-end textstart"><strong>Image:</strong></label>
+ <div class="col-md-6">
+     @if($product->image)
+     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="img-fluid img-thumbnail" style="max-height: 300px;">
+     @else
+     <!-- Sample image for demonstration -->
+     <img src="{{ asset('images/products/1747456866_gettyimages-91203729-612x612.jpg') }}" alt="Sample product image" class="img-fluid img-thumbnail" style="max-height: 300px;">
+     @endif
+ </div>
+ </div>
  
  </div>
  </div>
